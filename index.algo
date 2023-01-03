@@ -1,0 +1,29 @@
+ALGORITHM Linear
+VAR
+    tab1 : ARRAY_OF INTEGER;
+    tab2 : ARRAY_OF INTEGER;
+    i,j,nbr_nonrepeat,nbr_repeat,nbr_nonrepeat1,nbr_repeat1,nbr_repeat2,nbr_nonrepeat2 =INTEGER:=0
+BEGIN
+Read(tab1)
+Read(tab2)
+    FOR i FROM 0 TO tab1.length-1 STEP 1  DO
+        FOR j FROM 0 TO tab2.length-1 STEP 1 DO
+
+           IF (tab1[i]==tab2[j]) THEN
+            nbr_repeat1:=nbr_repeat1+tab1[i]
+            nbr_repeat2:=nbr_repeat2+tab2[j]
+            nbr_repeat:=nbr_repeat+nbr_repeat1+nbr_repeat2
+           ELSE
+           nbr_nonrepeat1:=nbr_nonrepeat1+tab1[i]
+           FOR i FROM 0 TO tab2.length-1 STEP 1  DO
+            FOR j FROM 0 TO tab1.length-1 STEP 1  DO
+            nbr_nonrepeat2:=nbr_nonrepeat2+tab2[i]
+            END_FOR
+            nbr_nonrepeat:= nbr_nonrepeat+(nbr_nonrepeat1+nbr_nonrepeat2)
+           END_FOR
+           END_IF
+        END_FOR
+    END_FOR
+Write("la somme des nombres non repétés",nbr_nonrepeat)
+Write("lka somme des nombres repétés",nbr_repeat)
+END
